@@ -3,8 +3,8 @@
 #include "binary_tree.h"
 
 //新しいノードを作成
-node *malloc_node(int value) {
-    node *new_node = (node*)malloc(sizeof(node));
+struct binary_tree_node *malloc_node(int value) {
+    struct binary_tree_node *new_node = (struct binary_tree_node*)malloc(sizeof(struct binary_tree_node));
 
     new_node->value = value;
     new_node->left = NULL;
@@ -14,8 +14,8 @@ node *malloc_node(int value) {
 }
 
 //新しいノードを追加
-node *add_node(node *root, int value) {
-    node *tmp_node;
+struct binary_tree_node *add_node(struct binary_tree_node *root, int value) {
+    struct binary_tree_node *tmp_node;
 
     if (root == NULL) {
         root = malloc_node(value);
@@ -23,9 +23,9 @@ node *add_node(node *root, int value) {
     }
 
     tmp_node = root;
-    while (true) {
+    while (1) {
         if (value < tmp_node->value) {
-            if (tmp_node->left = NULL) {
+            if (tmp_node->left == NULL) {
                 tmp_node->left = malloc_node(value);
                 break;
             }
@@ -33,7 +33,7 @@ node *add_node(node *root, int value) {
         }
         else if (value > tmp_node->value) {
             if (tmp_node->right == NULL) {
-                tmp_right = malloc_node(value);
+                tmp_node->right = malloc_node(value);
                 break;
             }
             tmp_node = tmp_node->right;
@@ -42,6 +42,6 @@ node *add_node(node *root, int value) {
             printf("既に存在する値です\n");
             break;
         }
-        return root;
     }
+        return root;
 }
