@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "binary_tree.h"
 
-void printTree(struct ALV_tree_node *root, int depth){
+void printTree(a_node *root, int depth){
   int i;
 
   if(root == NULL){
@@ -14,7 +13,7 @@ void printTree(struct ALV_tree_node *root, int depth){
  
   /* 深さをスペースで表現 */ 
   for(i = 0; i < depth; i++){
-    printf("  ");
+    printf("---/", i);
   }
 
   /* ノードのデータを表示 */
@@ -26,11 +25,12 @@ void printTree(struct ALV_tree_node *root, int depth){
   depth++;
 }
 
-struct ALV_tree_node *malloc_node(int);
-struct ALV_tree_node *add_node(struct ALV_tree_node *, int);
+int get_height(a_node *);
+a_node *malloc_node(int);
+a_node *add_node(a_node *, int);
 
 int main() {
-    struct ALV_tree_node *root = NULL;
+    a_node *root = NULL;
     root = add_node(root, 60);
     root = add_node(root, 40);
     root = add_node(root, 30);
@@ -39,4 +39,5 @@ int main() {
     root = add_node(root, 20);
     // printf("%d ",root->);
     printTree(root, 0);
+    printf("%d", get_height(root));
 }
