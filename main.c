@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "binary_tree.h"
 
-void printTree(struct binary_tree_node *root, int depth){
+void printTree(struct ALV_tree_node *root, int depth){
   int i;
 
   if(root == NULL){
@@ -26,11 +26,11 @@ void printTree(struct binary_tree_node *root, int depth){
   depth++;
 }
 
-struct binary_tree_node *malloc_node(int);
-struct binary_tree_node *add_node(struct binary_tree_node *, int);
+struct ALV_tree_node *malloc_node(int);
+struct ALV_tree_node *add_node(struct ALV_tree_node *, int);
 
 int main() {
-    struct binary_tree_node *root = NULL;
+    struct ALV_tree_node *root = NULL;
     root = add_node(root, 60);
     root = add_node(root, 40);
     root = add_node(root, 30);

@@ -3,8 +3,8 @@
 #include "binary_tree.h"
 
 //新しいノードを作成
-struct binary_tree_node *malloc_node(int value) {
-    struct binary_tree_node *new_node = (struct binary_tree_node*)malloc(sizeof(struct binary_tree_node));
+struct ALV_tree_node *malloc_node(int value) {
+    struct ALV_tree_node *new_node = (struct ALV_tree_node*)malloc(sizeof(struct ALV_tree_node));
 
     new_node->value = value;
     new_node->left = NULL;
@@ -14,8 +14,8 @@ struct binary_tree_node *malloc_node(int value) {
 }
 
 //新しいノードを追加
-struct binary_tree_node *add_node(struct binary_tree_node *root, int value) {
-    struct binary_tree_node *tmp_node;
+struct ALV_tree_node *add_node(struct ALV_tree_node *root, int value) {
+    struct ALV_tree_node *tmp_node;
 
     if (root == NULL) {
         root = malloc_node(value);
@@ -45,3 +45,4 @@ struct binary_tree_node *add_node(struct binary_tree_node *root, int value) {
     }
         return root;
 }
+
