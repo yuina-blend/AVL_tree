@@ -1,43 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void printTree(a_node *root, int depth){
-  int i;
+// #include "AVL_tree.h"
 
-  if(root == NULL){
-    return ;
+typedef struct AVL_tree_node
+{
+  int value;
+  struct AVL_tree_node *right;
+  struct AVL_tree_node *left;
+} avl_node;
+
+int main(void)
+{
+  avl_node *root = NULL;
+
+  // 1. 60,40,30,10,50,20の順で挿入
+  //  段階的に探索木を出力
+  printf("1. 追加\n\n");
+  int add_nums[6] = {60, 40, 30, 10, 50, 20};
+  for (int i = 0; i < 6; i++)
+  {
+    root = add_node(root, add_nums[i]);
+    print_t(root, 0);
+    printf("\n-------------\n");
+  }
+  // 2. 30と55を検索
+  printf("\n\n2. 探索\n\n");
+  int search_num[2] = {30, 55};
+  for (int i = 0; i < 2; i++)
+  {
+    avl_node *result = search_node(root, search_num[i]);
+    if (result == NULL)
+    {
+      printf("%dは見つかりませんでした\n", search_num[i]);
+    }
+    else
+    {
+      printf("%dを発見しました\n", search_num[i]);
+    }
   }
 
-  /* 右の子孫ノードを表示 */
-  printTree(root->right, depth+1);
- 
-  /* 深さをスペースで表現 */ 
-  for(i = 0; i < depth; i++){
-    printf("---/", i);
+  // 3. 20,40,60,30,50,10の順で削除
+  //  段階的に探索木を出力
+  printf("\n\n3. 削除\n\n");
+  int delete_nums[6] = {20, 40, 60, 30, 50, 10};
+  for (int i = 0; i < 6; i++)
+  {
+    root = delete_node(root, delete_nums[i]);
+    print_t(root, 0);
+    printf("\n-------------\n");
   }
 
-  /* ノードのデータを表示 */
-  printf("+%3d\n", root->value);
+  deleteTree(root);
 
-  /* 左の子孫ノードを表示 */
-  printTree(root->left, depth+1);
-
-  depth++;
-}
-
-int get_height(a_node *);
-a_node *malloc_node(int);
-a_node *add_node(a_node *, int);
-
-int main() {
-    a_node *root = NULL;
-    root = add_node(root, 60);
-    root = add_node(root, 40);
-    root = add_node(root, 30);
-    root = add_node(root, 10);
-    root = add_node(root, 50);
-    root = add_node(root, 20);
-    // printf("%d ",root->);
-    printTree(root, 0);
-    printf("%d", get_height(root));
+  return 0;
 }

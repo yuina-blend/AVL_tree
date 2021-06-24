@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <vector>
 
-#define MAX_NAME_LEN 256
 #define MAX_HEIGHT 100
 
 #define TREE_LEFT 1
@@ -12,8 +10,8 @@
 typedef struct AVL_tree_node
 {
     int value;
-    struct AVL_tree_node *left;
     struct AVL_tree_node *right;
+    struct AVL_tree_node *left;
 } avl_node;
 
 int get_height(avl_node *node)
@@ -457,12 +455,15 @@ int main(void)
     // 2. 30と55を検索
     printf("\n\n2. 探索\n\n");
     int search_num[2] = {30, 55};
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
+    {
         avl_node *result = search_node(root, search_num[i]);
-        if (result == NULL) {
+        if (result == NULL)
+        {
             printf("%dは見つかりませんでした\n", search_num[i]);
         }
-        else {
+        else
+        {
             printf("%dを発見しました\n", search_num[i]);
         }
     }
@@ -470,8 +471,9 @@ int main(void)
     // 3. 20,40,60,30,50,10の順で削除
     //  段階的に探索木を出力
     printf("\n\n3. 削除\n\n");
-    int delete_nums[6] = {20,40,60,30,50,10};
-    for (int i = 0; i < 6; i++) {
+    int delete_nums[6] = {20, 40, 60, 30, 50, 10};
+    for (int i = 0; i < 6; i++)
+    {
         root = delete_node(root, delete_nums[i]);
         print_t(root, 0);
         printf("\n-------------\n");
